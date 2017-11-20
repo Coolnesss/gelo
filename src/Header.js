@@ -11,6 +11,8 @@ export default class Header extends Component {
         return (
         <header className="navbar">
             <NavLink className="btn btn-link" to="/">Home</NavLink>
+            <NavLink className="btn btn-link" to="/new">New Game</NavLink>
+
             { !loggedIn &&
                 <NavLink className="btn btn-link" to="/login">Login</NavLink>
             }

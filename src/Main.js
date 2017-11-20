@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 import Home from './Home';
 import Login from './Login';
+import NewGame from './NewGame';
 
 export default class Main extends Component {
     render() { 
@@ -10,6 +11,7 @@ export default class Main extends Component {
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/login' component={Login} />
+                <Route exact path='/new' component={NewGame} />
             </Switch>
         </div>
         )
