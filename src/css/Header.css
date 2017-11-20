@@ -1,3 +1,7 @@
 .navbar {
     padding: 2%;    
 }
+
+.active {
+    font-weight: bold;
+}
