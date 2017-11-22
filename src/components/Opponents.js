@@ -10,7 +10,7 @@ class Opponents extends Component {
 
         return (
             <div>
-                <label className="form-label" >Who did you play with?</label> 
+                <h3 className="form-label" >Who did you play with?</h3> 
                 <div className="form-group">
                     <select ref="select" className="form-select">
                         {

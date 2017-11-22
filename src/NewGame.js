@@ -2,14 +2,34 @@ import React, { Component } from 'react';
 import { getPlayers, postGame } from './util';
 import Opponents from './components/Opponents';
 import { toast } from 'react-toastify';
+import './css/NewGame.css';
 
 export default class NewGame extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            side: "white",
+            whoWon: "white"
+        };
         this.possibleOpponents = this.possibleOpponents.bind(this);
+
+        this.onSideSelect = this.onSideSelect.bind(this);
+        this.onWonSelect = this.onWonSelect.bind(this);
+        
+    }
+
+    onSideSelect(e) {
+        this.setState({
+            side: e.target.value
+        })
+    }
+
+    onWonSelect(e) {
+        this.setState({
+            whoWon: e.target.value
+        })
     }
 
     possibleOpponents() {
@@ -30,8 +50,8 @@ export default class NewGame extends Component {
         e.preventDefault();
 
         let opponent = this.refs.opponents.refs.select.value;
-        let whoWon = this.refs.whoWon.value;
-        let side = this.refs.side.value;
+        let whoWon = this.state.whoWon;
+        let side = this.state.side;
 
         let info = {
             opponent,
@@ -55,22 +75,51 @@ export default class NewGame extends Component {
                 <p> To proceed, just add who you played with and who won. They will be asked to confirm.</p>
 
                 <form onSubmit={this.onSubmit} className="form-group">
-                    <label className="form-label" >Who won?</label> 
-                    <div className="form-group">
-                        <select ref="whoWon" className="form-select">
-                            <option>White</option>
-                            <option>Black</option>
-                            <option>Draw</option>
-                        </select>
-                    </div>
 
-                    <label className="form-label" >Which side were you on?</label> 
-                    <div className="form-group">
-                        <select ref="side" className="form-select">
-                            <option>White</option>
-                            <option>Black</option>
-                        </select>
+                <h3 className="form-label" >What was the result?</h3> 
+                    <div className="middle">
+                        <label>
+                            <input onChange={this.onWonSelect} value="white" type="radio" name="radioa" checked={this.state.whoWon === "white"} />
+                            <div className="bishop box">
+                                <span>White</span>
+                            </div>
+                        </label>
+
+                        <label>
+                            <input onChange={this.onWonSelect} value="black" type="radio" checked={this.state.whoWon === "black"} name="radioa"/>
+                            <div className="knight box">
+                                <span>Black</span>
+                            </div>
+                        </label>
+                        
+                        <label>
+                            <input onChange={this.onWonSelect} value="draw" type="radio" checked={this.state.whoWon === "draw"} name="radioa"/>
+                            <div className="king box">
+                                <span>Draw</span>
+                            </div>
+                        </label>
                     </div>
+                    <br/>
+
+
+                    <h3 className="form-label" >Which side were you on?</h3> 
+                    <div className="middle">
+                        <label>
+                            <input onChange={this.onSideSelect} value="white" type="radio" name="radio" checked={this.state.side === "white"} />
+                            <div className="bishop box">
+                                <span>White</span>
+                            </div>
+                        </label>
+
+                        <label>
+                            <input onChange={this.onSideSelect} value="black" type="radio" checked={this.state.side === "black"} name="radio"/>
+                            <div className="knight box">
+                                <span>Black</span>
+                            </div>
+                        </label>
+                    </div>
+                    <br/>
+
 
                     <Opponents
                         opponents={this.state.opponents}
@@ -78,9 +127,12 @@ export default class NewGame extends Component {
                     />
 
                     <br/>
-                    <input className="btn" type="submit" value="Add game" />
+                    <input className="btn margin-btm" type="submit" value="Add game" />
                     
+                    <br/>
+
                     </form>
+
 
             </div>
         )
