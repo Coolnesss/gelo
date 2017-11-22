@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { isLoggedIn } from './util';
+import { isLoggedIn, logout } from './util';
 import './css/Header.css';
+import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
 
-export default class Header extends Component {
+class Header extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.logoutPressed = this.logoutPressed.bind(this);
+    }
+
+    logoutPressed() {
+        logout();
+        toast("Logged out successfully!", {className: 'toast toast-success'});
+        this.props.history.push("/");
+    }
+
     render() {
 
         const loggedIn = isLoggedIn();
-        console.log(loggedIn);
         return (
         <header className="navbar">
             <NavLink className="btn btn-link" to="/">Home</NavLink>
@@ -17,9 +31,11 @@ export default class Header extends Component {
                 <NavLink className="btn btn-link" to="/login">Login</NavLink>
             }
             { loggedIn &&
-                <p> Logged in</p>
+                <a onClick={this.logoutPressed} className="btn btn-link" >Logout</a> 
             }
             
         </header>);
     }
 }
+
+export default withRouter(Header);

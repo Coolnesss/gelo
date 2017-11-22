@@ -1,3 +1,5 @@
 .toast {
     color: black;
+    font-weight: bold;
+    text-align: center;
 }

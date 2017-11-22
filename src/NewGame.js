@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getPlayers, postGame } from './util';
 import Opponents from './components/Opponents';
+import { toast } from 'react-toastify';
 
 export default class NewGame extends Component {
 
@@ -27,12 +28,24 @@ export default class NewGame extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+
         let opponent = this.refs.opponents.refs.select.value;
         let whoWon = this.refs.whoWon.value;
         let side = this.refs.side.value;
 
-        
+        let info = {
+            opponent,
+            whoWon,
+            side
+        }
 
+        postGame(info).then((response) => {
+            toast("Game submitted!", {className: 'toast toast-success'});
+        }).catch((error) => {
+            let err = error.response.data.error;
+            toast("Request failed: " + err, {className: 'toast toast-error'})
+            
+        });
     }
 
     render() { 

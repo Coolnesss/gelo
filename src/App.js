@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Toast />
         <Main />
+        <Toast />
       </div>
     );
   }

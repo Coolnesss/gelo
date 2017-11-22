@@ -9,7 +9,7 @@ export default class Toast extends Component {
         <div>
         {/* One container to rule them all! */}
         <ToastContainer 
-          position="top-center"
+          position="bottom-center"
           autoClose={5000}
           hideProgressBar={true}
           newestOnTop={false}
