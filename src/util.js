@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import moment from 'moment';
 
 const URL = "http://localhost:3100/";
 
@@ -28,6 +29,20 @@ export const login = async (username, password) => {
 
 export const getPlayers = async () => {
     return await axios.get(URL + "players", headers());
+}
+
+export const getGames = async () => {
+    return await axios.get(URL + "games", headers());
+}
+
+export const formatWinner = (result, white, black) => {
+    if (result === 1) return white;
+    if (result === -1) return black;
+    return "draw";
+}
+
+export const formatDate = (date) => {
+    return moment(date).format("DD.MM.YYYY HH:mm");
 }
 
 export const postGame = async (info) => {
