@@ -26,6 +26,7 @@ class Header extends Component {
         <header className="navbar">
             <NavLink className="btn btn-link" to="/">Home</NavLink>
             <NavLink className="btn btn-link" to="/new">New Game</NavLink>
+            <NavLink className="btn btn-link" to="/games">Games</NavLink>
 
             { !loggedIn &&
                 <NavLink className="btn btn-link" to="/login">Login</NavLink>
