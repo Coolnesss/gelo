@@ -28,13 +28,14 @@ export default class Games extends Component {
 
         return games.map((game) => {
             const winner = formatWinner(game.result, game.white.username, game.black.username);
+            console.log(game.confirmed);
             
             return (<tr key={ game.created_at }>
                 <td className={ game.result === 1 ?  "is-bold" : "" }>{ game.white.username }</td>
                 <td className={ game.result === -1 ?  "is-bold" : "" }>{ game.black.username }</td>
                 <td className="is-bold">{ winner }</td>
                 <td>{ formatDate(game.created_at) }</td>
-                <td>{ game.confirmed }</td>
+                <td>{ "" + game.confirmed }</td>
             </tr>)
         })
     }
