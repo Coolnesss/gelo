@@ -1,0 +1,12 @@
+.notification {
+    margin-bottom: 2%;
+}
+
+.notification-body b {
+    color: #50596c;
+}
+
+.tile-title {
+    font-size: 1rem;
+    font-weight: 100;
+}

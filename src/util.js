@@ -55,3 +55,7 @@ export const isLoggedIn = () => {
 export const logout = () => {
     localStorage.removeItem("token");
 }
+
+export const getNotifications = async () => {
+    return await axios.get(URL + "notifications", headers());
+}
