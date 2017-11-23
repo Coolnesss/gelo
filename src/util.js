@@ -74,3 +74,7 @@ export const logout = () => {
 export const getNotifications = async () => {
     return await axios.get(URL + "notifications", headers());
 }
+
+export const approveGame = async (id) => {
+    return await axios.post(URL + `games/${id}/confirm`, {}, headers());
+}

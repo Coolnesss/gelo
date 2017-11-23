@@ -24,10 +24,13 @@ class Header extends Component {
         const loggedIn = isLoggedIn();
         return (
         <header className="navbar">
-            <NavLink className="btn btn-link" to="/">Home</NavLink>
-            <NavLink className="btn btn-link" to="/new">New Game</NavLink>
-            <NavLink className="btn btn-link" to="/games">Games</NavLink>
-
+            <section className="navbar-section">
+                <NavLink className="btn btn-link" to="/">Home</NavLink>
+                <NavLink className="btn btn-link" to="/new">New Game</NavLink>
+                <NavLink className="btn btn-link" to="/games">Games</NavLink>
+                <NavLink className="btn btn-link" to="/notifications">Notifications</NavLink>
+            </section>
+            
             { !loggedIn &&
                 <NavLink className="btn btn-link" to="/login">Login</NavLink>
             }

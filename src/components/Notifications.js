@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { getNotifications } from '../util';
+import { getNotifications, approveGame } from '../util';
 import '../css/Notifications.css';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 export default class Notifications extends Component {
 
@@ -10,14 +12,45 @@ export default class Notifications extends Component {
 
         this.state = {};
         this.createList = this.createList.bind(this);
+        this.refreshGames = this.refreshGames.bind(this);
     }
 
-    componentWillMount() {
+    refreshGames() {
         getNotifications().then((response) => {
             this.setState({
                 games: response.data
             });
-            console.log(response);
+        });
+    }
+
+    componentWillMount() {
+        this.refreshGames();
+    }
+
+    formatResult = (won) => {
+        if (won === 1) {
+            return "you beat him."
+        } else if (won === -1) {
+            return "you lost against him."
+        }
+        return "you two drew a game."
+    }
+
+    formatTitle = (won) => {
+        if (won === 1) {
+            return <div className="tile-title text-success">Victory</div>
+        } else if (won === -1) {
+            return <div className="tile-title text-error">Loss</div>
+        }
+        return <div className="tile-title">Draw</div>
+    }
+
+    approve = (game) => {
+        approveGame(game.id).then((response) => {
+            toast("Game approved!", {className: 'toast toast-success'});
+            this.refreshGames();
+        }).catch((error) => {
+            toast("Something went wrong.", {className: 'toast toast-error'});            
         });
     }
 
@@ -31,14 +64,14 @@ export default class Notifications extends Component {
         
         return games.map((game) => {
             return (
-                <div className="notification tile tile-centered">
+                <div key={game.created_at} className="notification tile tile-centered">
                     <div className="tile-content">
-                    <div className="tile-title"><b>Loss</b></div>
+                    { this.formatTitle(game.won) }
                     <div className="notification-body tile-subtitle text-gray">
-                        <b>{ game.added_by.username }</b> claimed on <b>{ new Date(game.created_at).getDate() }</b> that you <b> lost </b> against him</div>
+                        <b>{ game.added_by.username }</b> claimed on <b>{ moment(game.created_at).format("DD.MM [at] HH.MM") }</b> that { this.formatResult(game.won) }</div>
                     </div>
                     <div className="tile-action btn-group">
-                        <button className="btn btn-sm">
+                        <button onClick={() => {this.approve(game)}} className="btn btn-sm">
                         Approve
                         </button>
                         <button className="btn btn-sm text-error">
