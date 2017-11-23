@@ -4,6 +4,7 @@ import Home from './Home';
 import Login from './Login';
 import NewGame from './NewGame';
 import Notifications from './components/Notifications';
+import Games from './Games';
 
 export default class Main extends Component {
     render() { 
@@ -14,6 +15,7 @@ export default class Main extends Component {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/new' component={NewGame} />
                 <Route exact path='/notifications' component={Notifications} />
+                <Route exact path='/games' component={Games} />
             </Switch>
         </div>
         )
