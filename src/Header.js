@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { isLoggedIn, logout } from './util';
+import { isLoggedIn, logout, currentUserName } from './util';
 import './css/Header.css';
 import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
@@ -9,7 +9,6 @@ class Header extends Component {
 
     constructor(props) {
         super(props);
-
         this.logoutPressed = this.logoutPressed.bind(this);
     }
 
@@ -20,8 +19,8 @@ class Header extends Component {
     }
 
     render() {
-
         const loggedIn = isLoggedIn();
+        const currentUser = currentUserName();
         return (
         <header className="navbar">
             <section className="navbar-section">
@@ -29,15 +28,21 @@ class Header extends Component {
                 <NavLink className="btn btn-link" to="/new">New Game</NavLink>
                 <NavLink className="btn btn-link" to="/games">Games</NavLink>
                 <NavLink className="btn btn-link" to="/notifications">Notifications</NavLink>
+                {loggedIn &&
+                    <NavLink className="btn btn-link" to="/my_page">My page</NavLink>
+                }
             </section>
-            
+
             { !loggedIn &&
                 <NavLink className="btn btn-link" to="/login">Login</NavLink>
             }
             { loggedIn &&
-                <a onClick={this.logoutPressed} className="btn btn-link" >Logout</a> 
+                <span>
+                    <div className="btn btn-link" >Logged in as {currentUser}</div>
+                    <a onClick={this.logoutPressed} className="btn btn-link" >Logout</a>
+                </span>
             }
-            
+
         </header>);
     }
 }

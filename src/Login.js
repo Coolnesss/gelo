@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { login, saveToken } from './util';
-import { toast } from 'react-toastify';
+import {
+    login,
+    saveToken,
+    saveUserName,
+    toastOnError,
+    toastOnSuccess
+} from './util';
 
 export default class Login extends Component {
 
     constructor(props) {
         super(props);
-    } 
+    }
 
     sendRequest = (e) => {
         e.preventDefault();
@@ -15,10 +20,11 @@ export default class Login extends Component {
 
         login(username, password).then((response) => {
             saveToken(response.data.token);
-            toast("Logged in successfully!", {className: 'toast toast-success'});
+            saveUserName(username);
+            toastOnSuccess("Logged in successfully!");
             this.props.history.push('/');
         }).catch((error) => {
-            console.error(error);
+            toastOnError("Login failed");
         })
 
     }
