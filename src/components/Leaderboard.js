@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { getPlayers } from '../util';
 
 export default class Leaderboard extends Component {
@@ -40,7 +39,7 @@ export default class Leaderboard extends Component {
         })
     }
 
-    render() { 
+    render() {
         return (
             <div className="leaderboard container grid-md">
             <h3> Leaderboard </h3>

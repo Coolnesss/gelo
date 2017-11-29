@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { getPlayers, postGame, currentUserName } from './util';
-import Opponents from './components/Opponents';
+import { getPlayers, postGame, currentUserName } from '../util';
+import Opponents from './Opponents';
 import { toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom';
-import './css/NewGame.css';
+import '../css/NewGame.css';
 
 export default class NewGame extends Component {
 
@@ -76,7 +76,7 @@ export default class NewGame extends Component {
         if (currentUser == null) {
             return <div className="big-message">Please <NavLink to="/login">login</NavLink> to create a new game.</div>
         }
-        if (this.state.opponents && this.state.opponents.length == 0) {
+        if (this.state.opponents && this.state.opponents.length === 0) {
             return <div className="big-message"> You are the only player :(</div>;
         }
         return (

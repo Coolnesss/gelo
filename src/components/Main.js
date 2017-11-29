@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from './Home';
 import Login from './Login';
 import NewGame from './NewGame';
-import Notifications from './components/Notifications';
+import Notifications from './Notifications';
 import AllGames from './AllGames';
 import MyPage from './MyPage';
 

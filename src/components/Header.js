@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { isLoggedIn, logout, currentUserName } from './util';
-import './css/Header.css';
+import { isLoggedIn, logout, currentUserName } from '../util';
+import '../css/Header.css';
 import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
 
@@ -28,12 +28,11 @@ class Header extends Component {
                 <NavLink className="btn btn-link" to="/new">New Game</NavLink>
                 <NavLink className="btn btn-link" to="/games">Games</NavLink>
                 <NavLink className="btn btn-link" to="/notifications">Notifications</NavLink>
-                {loggedIn &&
-                    <NavLink className="btn btn-link" to="/my_page">My page</NavLink>
-                }
             </section>
-
-            { !loggedIn &&
+            {loggedIn &&
+                <NavLink className="btn btn-link" to="/my_page">My page</NavLink>
+            }
+             { !loggedIn &&
                 <NavLink className="btn btn-link" to="/login">Login</NavLink>
             }
             { loggedIn &&

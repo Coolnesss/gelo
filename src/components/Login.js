@@ -5,13 +5,9 @@ import {
     saveUserName,
     toastOnError,
     toastOnSuccess
-} from './util';
+} from '../util';
 
 export default class Login extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     sendRequest = (e) => {
         e.preventDefault();

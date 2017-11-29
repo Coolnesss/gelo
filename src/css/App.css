@@ -9,11 +9,11 @@ h1, h3, h4 {
 
 @font-face {
   font-family: 'Merida-Chess-Icons';
-  src:    url('fonts/Merida-Chess-Icons.eot?uzh49q');
-  src:    url('fonts/Merida-Chess-Icons.eot?uzh49q#iefix') format('embedded-opentype'),
-      url('fonts/Merida-Chess-Icons.ttf?uzh49q') format('truetype'),
-      url('fonts/Merida-Chess-Icons.woff?uzh49q') format('woff'),
-      url('fonts/Merida-Chess-Icons.svg?uzh49q#Merida-Chess-Icons') format('svg');
+  src:    url('../fonts/Merida-Chess-Icons.eot?uzh49q');
+  src:    url('../fonts/Merida-Chess-Icons.eot?uzh49q#iefix') format('embedded-opentype'),
+      url('../fonts/Merida-Chess-Icons.ttf?uzh49q') format('truetype'),
+      url('../fonts/Merida-Chess-Icons.woff?uzh49q') format('woff'),
+      url('../fonts/Merida-Chess-Icons.svg?uzh49q#Merida-Chess-Icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }

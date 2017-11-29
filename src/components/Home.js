@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
-import Leaderboard from './components/Leaderboard';
+import Leaderboard from './Leaderboard';
 
 export default class Home extends Component {
-    render() { 
+    render() {
         return (
         <div>
             <h1> Welcome </h1>

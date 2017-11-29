@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { getMyGames, toastOnError, currentUserName } from './util';
+import { getMyGames, toastOnError, currentUserName } from '../util';
 import Games from './Games';
-import './css/MyPage.css';
+import '../css/MyPage.css';
 
 export default class MyPage extends Component {
 
@@ -29,11 +29,8 @@ export default class MyPage extends Component {
         <h2 className="my-page-container" >
           {currentUser}
         </h2>
-        {this.state.games && this.state.games.map(game => {
-          return (
+        {this.state.games && this.state.games &&
             <Games games={this.state.games}/>
-          )
-        })
         }
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getGames, formatWinner, formatDate } from './util';
-import './css/Games.css';
+import { formatWinner, formatDate } from '../util';
+import '../css/Games.css';
 
 export default class Games extends Component {
 
@@ -18,7 +18,6 @@ export default class Games extends Component {
 
     let games = this.props.games;
     return games.map((game) => {
-      console.log(game);
       const winner = formatWinner(game.result, game.white.username, game.black.username);
 
       return (<tr key={game.created_at}>

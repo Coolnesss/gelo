@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { getNotifications, approveGame } from '../util';
 import '../css/Notifications.css';
 import moment from 'moment';
@@ -50,7 +49,7 @@ export default class Notifications extends Component {
             toast("Game approved!", {className: 'toast toast-success'});
             this.refreshGames();
         }).catch((error) => {
-            toast("Something went wrong.", {className: 'toast toast-error'});            
+            toast("Something went wrong.", {className: 'toast toast-error'});
         });
     }
 
@@ -61,7 +60,7 @@ export default class Notifications extends Component {
         }
 
         let games = this.state.games;
-        
+
         return games.map((game) => {
             return (
                 <div key={game.created_at} className="notification tile tile-centered">
@@ -78,12 +77,12 @@ export default class Notifications extends Component {
                         Reject
                         </button>
                     </div>
-                </div>        
+                </div>
             );
         });
     }
 
-    render() { 
+    render() {
         return (
             <div className="container grid-sm">
             <h3> Unconfirmed games </h3>

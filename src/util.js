@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 
@@ -47,8 +46,6 @@ export const formatDate = (date) => {
 }
 
 export const postGame = async (info) => {
-    let token = getToken();
-
     return await axios.post(URL + "games", {
         "game": {
             ...info
