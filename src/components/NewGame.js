@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { getPlayers, postGame } from './util';
-import Opponents from './components/Opponents';
+import { getPlayers, postGame, currentUserName } from '../util';
+import Opponents from './Opponents';
 import { toast } from 'react-toastify';
-import './css/NewGame.css';
+import { NavLink } from 'react-router-dom';
+import '../css/NewGame.css';
 
 export default class NewGame extends Component {
 
@@ -11,13 +12,13 @@ export default class NewGame extends Component {
 
         this.state = {
             side: "white",
-            whoWon: "white"
+            whoWon: "white",
+            opponents: [],
         };
         this.possibleOpponents = this.possibleOpponents.bind(this);
 
         this.onSideSelect = this.onSideSelect.bind(this);
         this.onWonSelect = this.onWonSelect.bind(this);
-        
     }
 
     onSideSelect(e) {
@@ -33,9 +34,12 @@ export default class NewGame extends Component {
     }
 
     possibleOpponents() {
+        const currentUser = currentUserName();
         getPlayers().then((response) => {
             this.setState({
-                opponents: response.data.map((player) => player.username)
+                opponents: response.data
+                                    .map((player) => player.username)
+                                    .filter(username => username !== currentUser)
             });
         }).catch((error) => {
             console.error(error);
@@ -64,11 +68,17 @@ export default class NewGame extends Component {
         }).catch((error) => {
             let err = error.response.data.error;
             toast("Request failed: " + err, {className: 'toast toast-error'})
-            
         });
     }
 
-    render() { 
+    render() {
+        const currentUser = currentUserName();
+        if (currentUser == null) {
+            return <div className="big-message">Please <NavLink to="/login">login</NavLink> to create a new game.</div>
+        }
+        if (this.state.opponents && this.state.opponents.length === 0) {
+            return <div className="big-message"> You are the only player :(</div>;
+        }
         return (
             <div className='add-game container grid-sm'>
                 <h1>New Game</h1>
@@ -76,7 +86,7 @@ export default class NewGame extends Component {
 
                 <form onSubmit={this.onSubmit} className="form-group">
 
-                <h3 className="form-label" >What was the result?</h3> 
+                <h3 className="form-label" >What was the result?</h3>
                     <div className="middle">
                         <label>
                             <input onChange={this.onWonSelect} value="white" type="radio" name="radioa" checked={this.state.whoWon === "white"} />
@@ -91,7 +101,7 @@ export default class NewGame extends Component {
                                 <span>Black</span>
                             </div>
                         </label>
-                        
+
                         <label>
                             <input onChange={this.onWonSelect} value="draw" type="radio" checked={this.state.whoWon === "draw"} name="radioa"/>
                             <div className="king box">
@@ -102,7 +112,7 @@ export default class NewGame extends Component {
                     <br/>
 
 
-                    <h3 className="form-label" >Which side were you on?</h3> 
+                    <h3 className="form-label" >Which side were you on?</h3>
                     <div className="middle">
                         <label>
                             <input onChange={this.onSideSelect} value="white" type="radio" name="radio" checked={this.state.side === "white"} />
@@ -128,7 +138,7 @@ export default class NewGame extends Component {
 
                     <br/>
                     <input className="btn margin-btm" type="submit" value="Add game" />
-                    
+
                     <br/>
 
                     </form>

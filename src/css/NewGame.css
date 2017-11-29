@@ -76,3 +76,8 @@
 .margin-btm {
     margin-bottom: 3%;
 }
+
+.big-message {
+  text-align: center;
+  font-size: 40;
+}

@@ -10,7 +10,7 @@ class Opponents extends Component {
 
         return (
             <div>
-                <h3 className="form-label" >Who did you play with?</h3> 
+                <h3 className="form-label" >Who did you play with?</h3>
                 <div className="form-group">
                     <select ref="select" className="form-select">
                         {
@@ -19,7 +19,7 @@ class Opponents extends Component {
                             })
                         }
                     </select>
-                </div>    
+                </div>
             </div>
         );
     }
